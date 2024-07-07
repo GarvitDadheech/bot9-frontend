@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Message = ({ message }) => {
   const { text, sender, timestamp } = message;
   const messageClass = sender === 'user' ? 'user-message' : 'bot-message';

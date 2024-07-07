@@ -18,7 +18,7 @@ const ChatContainer = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text, conversationId }), // Send the user-provided text and conversationId
+                body: JSON.stringify({ text, conversationId }),
             });
 
             if (!response.ok) {
@@ -27,15 +27,17 @@ const ChatContainer = () => {
 
             const data = await response.json();
             const newBotMessage = { text: data.response, sender: 'bot', timestamp: new Date() };
-            setMessages(prevMessages => [ newBotMessage,...prevMessages]); // Update state with bot's response
+            setMessages(prevMessages => [ newBotMessage,...prevMessages]);
         } catch (error) {
+            const errorMessage = { text: "Sorry, Our servers are down, Please try again after sometime.", sender: 'bot', timestamp: new Date() };
+            setTimeout(() => setMessages(prevMessages => [errorMessage,...prevMessages,]), 500);
             console.error('Error sending message:', error);
         }
     };
 
     const handleNewChat = () => {
         setMessages([]);
-        setConversationId(uuidv4()); // Generate a new UUID for the new conversation
+        setConversationId(uuidv4()); 
     };
 
     return (

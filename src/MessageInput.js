@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './MessageInput.css';
 const MessageInput = ({ onSendMessage }) => {
   const [inputText, setInputText] = useState('');
 
@@ -23,7 +23,7 @@ const MessageInput = ({ onSendMessage }) => {
         onChange={handleInputChange}
         placeholder="Type a message..."
       />
-      <button type="submit">Send</button>
+      <button className='btn' type="submit">Send</button>
     </form>
   );
 };
